@@ -55,6 +55,24 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Right", function()
 end)
 
 
+-- Screen Brightness
+hs.hotkey.bind({"shift"}, "pageup", function()
+  cur_brightness = hs.brightness.get()
+  hs.brightness.set(cur_brightness + 10)
+end)
+
+hs.hotkey.bind({"shift"}, "pagedown", function()
+  cur_brightness = hs.brightness.get()
+  hs.brightness.set(cur_brightness - 10)
+end)
+
+
+-- Spotify Controls
+hs.hotkey.bind({"shift"}, "f12", function()
+  hs.spotify.playpause()
+end)
+
+
 -- Remap HJKL to arrow keys
 function arrow_left()
   hs.eventtap.keyStroke({}, "left")
