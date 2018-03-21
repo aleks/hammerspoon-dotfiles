@@ -54,22 +54,29 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Right", function()
   win:setFrame(f)
 end)
 
-
--- Screen Brightness
-hs.hotkey.bind({"shift"}, "pageup", function()
-  cur_brightness = hs.brightness.get()
-  hs.brightness.set(cur_brightness + 10)
-end)
-
-hs.hotkey.bind({"shift"}, "pagedown", function()
-  cur_brightness = hs.brightness.get()
-  hs.brightness.set(cur_brightness - 10)
-end)
-
-
 -- Spotify Controls
-hs.hotkey.bind({"shift"}, "f12", function()
+hs.hotkey.bind({"ctrl", "cmd"}, "f12", function()
   hs.spotify.playpause()
+end)
+
+hs.hotkey.bind({"ctrl", "cmd"}, "f10", function()
+  hs.spotify.previous()
+
+  artist = hs.spotify.getCurrentArtist()
+  track = hs.spotify.getCurrentTrack()
+
+  hs.alert.closeAll()
+  hs.alert(artist .. " - " .. track)
+end)
+
+hs.hotkey.bind({"ctrl", "cmd"}, "f11", function()
+  hs.spotify.next()
+
+  artist = hs.spotify.getCurrentArtist()
+  track = hs.spotify.getCurrentTrack()
+
+  hs.alert.closeAll()
+  hs.alert(artist .. " - " .. track)
 end)
 
 
@@ -96,4 +103,5 @@ hs.hotkey.bind({"ctrl", "cmd"}, "J", arrow_down,  nil, arrow_down)
 hs.hotkey.bind({"ctrl", "cmd"}, "K", arrow_up,    nil, arrow_up)
 hs.hotkey.bind({"ctrl", "cmd"}, "L", arrow_right, nil, arrow_right)
 
-hs.alert.show("Config loaded")
+-- hs.alert.show("Config loaded")
+hs.notify.new({title="Hammerspoon", informativeText="Config loaded"}):send()
