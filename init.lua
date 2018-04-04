@@ -81,27 +81,15 @@ end)
 
 
 -- Remap HJKL to arrow keys
-function arrow_left()
-  hs.eventtap.keyStroke({}, "left")
-end
-
-function arrow_down()
-  hs.eventtap.keyStroke({}, "down")
-end
-
-function arrow_up()
-  hs.eventtap.keyStroke({}, "up")
-end
-
-function arrow_right()
-  hs.eventtap.keyStroke({}, "right")
+function arrow_keys(direction)
+  return function() hs.eventtap.keyStroke({}, direction, 100) end
 end
 
 -- Call arrow_* on press and repeat!
-hs.hotkey.bind({"ctrl", "cmd"}, "H", arrow_left,  nil, arrow_left)
-hs.hotkey.bind({"ctrl", "cmd"}, "J", arrow_down,  nil, arrow_down)
-hs.hotkey.bind({"ctrl", "cmd"}, "K", arrow_up,    nil, arrow_up)
-hs.hotkey.bind({"ctrl", "cmd"}, "L", arrow_right, nil, arrow_right)
+hs.hotkey.bind({"ctrl", "cmd"}, "H", arrow_keys("left"),  nil, arrow_keys("left"))
+hs.hotkey.bind({"ctrl", "cmd"}, "J", arrow_keys("down"),  nil, arrow_keys("down"))
+hs.hotkey.bind({"ctrl", "cmd"}, "K", arrow_keys("up"),  nil, arrow_keys("up"))
+hs.hotkey.bind({"ctrl", "cmd"}, "L", arrow_keys("right"),  nil, arrow_keys("right"))
 
 -- hs.alert.show("Config loaded")
 hs.notify.new({title="Hammerspoon", informativeText="Config loaded"}):send()
